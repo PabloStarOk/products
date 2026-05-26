@@ -7,7 +7,7 @@ namespace Products.Api.Endpoints;
 /// <summary>
 /// Provides the endpoint logic for retrieving a product by its ID.
 /// </summary>
-public static class GetProductById
+public static class GetProductByIdEndpoint
 {
     /// <summary>
     /// The name of the endpoint for retrieving a product by its ID.
