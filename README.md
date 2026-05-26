@@ -130,3 +130,31 @@ npm run preview
 # NodeJS - pnpm
 pnpm run preview
 ```
+
+### Pasos para Ejecutar el Script para Detectar SKUs duplicados
+
+1. Clonar el repositorio.
+
+```bash
+git clone git@github.com:PabloStarOk/products.git
+```
+
+2. Acceder a la repositorio clonado y navegar hasta `scripts`.
+
+```bash
+cd products # Repositorio
+cd scripts # Carpeta con script de python.
+```
+
+3. Ejecutar el script utilizando Python 3, pasando como argumento la ruta del archivo `products.json` o `products.csv` presentes en la carpeta actual.
+
+```bash
+# JSON
+python detect_duplicates.py products.json
+
+# CSV
+python detect_duplicates.py products.csv
+
+# Archivo personalizado (asegurar se incluir los campos id, name, sku,  price, stock y category)
+python detect_duplicates.py /path/to/custom-file
+```
