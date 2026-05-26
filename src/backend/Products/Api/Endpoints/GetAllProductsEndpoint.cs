@@ -14,7 +14,12 @@ public static class GetAllProductsEndpoint
     /// <param name="builder">The endpoint route builder to which the endpoint will be mapped.</param>
     public static void Map(IEndpointRouteBuilder builder)
     {
-        builder.MapGet(string.Empty, HandleAsync);
+        builder.MapGet(string.Empty, HandleAsync)
+            .WithSummary("Get All Products")
+            .WithDescription("Gets all products stored in the database.")
+            .Produces<IReadOnlyList<Product>>()
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
     private static async Task<IResult> HandleAsync(

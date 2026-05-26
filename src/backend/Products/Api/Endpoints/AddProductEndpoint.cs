@@ -17,7 +17,12 @@ public static class AddProductEndpoint
     /// <param name="builder">The endpoint route builder to which the endpoint will be mapped.</param>
     public static void Map(IEndpointRouteBuilder builder)
     {
-        builder.MapPost(string.Empty, HandleAsync);
+        builder.MapPost(string.Empty, HandleAsync)
+            .WithSummary("Add Product")
+            .WithDescription("Adds a new product to the database.")
+            .Produces<Product>(StatusCodes.Status201Created)
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
     private static async Task<IResult> HandleAsync(

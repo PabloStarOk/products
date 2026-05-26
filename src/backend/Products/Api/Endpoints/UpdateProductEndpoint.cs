@@ -19,7 +19,13 @@ public static class UpdateProductEndpoint
     /// <param name="builder">The endpoint route builder to which the endpoint will be mapped.</param>
     public static void Map(IEndpointRouteBuilder builder)
     {
-        builder.MapPut(Pattern, HandleAsync);
+        builder.MapPut(Pattern, HandleAsync)
+            .WithSummary("Update Product")
+            .WithDescription("Updates an existing product in the database.")
+            .Produces<Product>()
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
     private static async Task<IResult> HandleAsync(

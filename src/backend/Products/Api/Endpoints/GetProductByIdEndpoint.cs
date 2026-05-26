@@ -23,7 +23,12 @@ public static class GetProductByIdEndpoint
     public static void Map(IEndpointRouteBuilder builder)
     {
         builder.MapGet(Pattern, HandleAsync)
-            .WithName(EndpointName);
+            .WithName(EndpointName)
+            .WithSummary("Get Product")
+            .WithDescription("Get a product by its id.")
+            .Produces<Product>()
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
     private static async Task<IResult> HandleAsync(
