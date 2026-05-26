@@ -105,7 +105,7 @@ export default function ProductsList({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className={`h-24 text-center ${statusMsg ? "text-destructive" : ""}`}
+                className={`h-24 text-center ${status === Status.Error ? "text-destructive" : ""}`}
               >
                 {statusMsg ?? "No se encontraron productos."}
               </TableCell>
