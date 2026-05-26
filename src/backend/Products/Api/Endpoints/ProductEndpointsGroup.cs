@@ -5,7 +5,7 @@ namespace Products.Api.Endpoints;
 /// </summary>
 public static class ProductEndpointsGroup
 {
-    private const string GroupPattern = "/products";
+    private const string GroupPattern = "/api/products";
 
     /// <summary>
     /// Maps the product-related endpoints to the specified endpoint route builder.
