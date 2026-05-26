@@ -1,23 +1,9 @@
-using FluentValidation;
-using Products.Api.Endpoints;
+using Products.Api;
 using Products.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddTransient<IValidator<ProductRequest>, ProductRequestValidator>();
-
+builder.Services.AddApi();
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-ProductEndpointsGroup.Map(app);
+app.ConfigureApp();
 app.Run();
