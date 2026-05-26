@@ -70,4 +70,10 @@ public sealed class ProductRepository : IProductRepository
     {
         return await _context.Products.AnyAsync(p => p.Id == id, cancellationToken);
     }
+
+    /// <inheritdoc/>
+    public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+    {
+        await _context.Products.Where(p => p.Id == id).ExecuteDeleteAsync(cancellationToken);
+    }
 }

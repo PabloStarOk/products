@@ -54,7 +54,9 @@ public static class UpdateProductEndpoint
         {
             var errors = new Dictionary<string, string[]>
             {
-                { "Sku", ["SKU must be unique."] },
+                {
+                    "Sku", ["SKU must be unique."]
+                },
             };
             return Results.ValidationProblem(errors);
         }

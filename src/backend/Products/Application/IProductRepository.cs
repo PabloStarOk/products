@@ -54,4 +54,12 @@ public interface IProductRepository
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     /// <returns>True if the product exists; otherwise, false.</returns>
     Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes a product by its unique identifier asynchronously.
+    /// </summary>
+    /// <param name="id">The unique identifier of the product to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>True if the product was deleted; otherwise, false.</returns>
+    Task DeleteAsync(int id, CancellationToken cancellationToken = default);
 }
