@@ -1,0 +1,6 @@
+id,name,sku,price,stock,category
+1,Jean Slim Fit,ABCD-JN-01,119900,50,Pantalones
+2,Jean Regular,abcd-jn-01 ,119900,30,Pantalones
+3,Camiseta Polo,ABCD_TSHIRT_M,59900,100,Camisetas
+4,Camiseta Polo Slim,ABCD-TSHIRT-M,59900,40,Camisetas
+5,Chaqueta Cuero,ABCD-CH-09,249900,15,Chaquetas
