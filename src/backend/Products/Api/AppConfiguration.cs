@@ -21,6 +21,7 @@ public static class AppConfiguration
         app.UseHttpsRedirection();
         app.UseExceptionHandler("/error");
         app.UseStatusCodePages();
+        app.UseCors();
         ProductEndpointsGroup.Map(app);
     }
 }

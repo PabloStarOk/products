@@ -17,5 +17,14 @@ public static class DependencyInjection
         services.AddOpenApi();
         services.AddProblemDetails();
         services.AddTransient<IValidator<ProductRequest>, ProductRequestValidator>();
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
     }
 }
