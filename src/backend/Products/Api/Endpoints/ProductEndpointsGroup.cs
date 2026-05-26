@@ -16,5 +16,6 @@ public static class ProductEndpointsGroup
         RouteGroupBuilder group = builder.MapGroup(GroupPattern);
         GetAllProductsEndpoint.Map(group);
         GetProductByIdEndpoint.Map(group);
+        AddProductEndpoint.Map(group);
     }
 }

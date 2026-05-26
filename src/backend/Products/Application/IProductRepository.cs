@@ -37,4 +37,12 @@ public interface IProductRepository
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     Task UpdateAsync(Product product, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Checks if the provided SKU is unique among all products asynchronously.
+    /// </summary>
+    /// <param name="sku">The SKU to check for uniqueness.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>True if the SKU is unique; otherwise, false.</returns>
+    Task<bool> IsSkuUniqueAsync(string sku, CancellationToken cancellationToken = default);
 }

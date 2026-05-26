@@ -55,4 +55,10 @@ public sealed class ProductRepository : IProductRepository
                 },
                 cancellationToken);
     }
+
+    /// <inheritdoc/>
+    public async Task<bool> IsSkuUniqueAsync(string sku, CancellationToken cancellationToken = default)
+    {
+        return !await _context.Products.AnyAsync(p => p.Sku == sku, cancellationToken);
+    }
 }
