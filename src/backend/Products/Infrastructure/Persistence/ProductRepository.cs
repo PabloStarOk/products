@@ -57,8 +57,17 @@ public sealed class ProductRepository : IProductRepository
     }
 
     /// <inheritdoc/>
-    public async Task<bool> IsSkuUniqueAsync(string sku, CancellationToken cancellationToken = default)
+    public async Task<bool> IsSkuUniqueAsync(
+        string sku,
+        int? excludeId = null,
+        CancellationToken cancellationToken = default)
     {
-        return !await _context.Products.AnyAsync(p => p.Sku == sku, cancellationToken);
+        return !await _context.Products.AnyAsync(p => p.Sku == sku && p.Id != excludeId, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default)
+    {
+        return await _context.Products.AnyAsync(p => p.Id == id, cancellationToken);
     }
 }

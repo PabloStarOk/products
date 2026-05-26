@@ -7,20 +7,23 @@ using Products.Domain;
 namespace Products.Api.Endpoints;
 
 /// <summary>
-/// Provides the endpoint for adding a new product.
+/// Provides the endpoint for updating a product.
 /// </summary>
-public static class AddProductEndpoint
+public static class UpdateProductEndpoint
 {
+    private const string Pattern = "/{id}";
+
     /// <summary>
-    /// Maps the POST endpoint for adding a product to the specified endpoint route builder.
+    /// Maps the PUT endpoint for updating a product to the specified endpoint route builder.
     /// </summary>
     /// <param name="builder">The endpoint route builder to which the endpoint will be mapped.</param>
     public static void Map(IEndpointRouteBuilder builder)
     {
-        builder.MapPost(string.Empty, HandleAsync);
+        builder.MapPut(Pattern, HandleAsync);
     }
 
     private static async Task<IResult> HandleAsync(
+        [FromRoute] int id,
         [FromBody] ProductRequest request,
         IProductRepository repository,
         IValidator<ProductRequest> validator,
@@ -32,7 +35,15 @@ public static class AddProductEndpoint
             return Results.ValidationProblem(validation.ToDictionary());
         }
 
-        bool skuUnique = await repository.IsSkuUniqueAsync(request.Sku, cancellationToken: cancellationToken);
+        bool exists = await repository.ExistsAsync(id, cancellationToken);
+        if (!exists)
+        {
+            return Results.Problem(
+                detail: $"No product found with id '{id}'",
+                statusCode: StatusCodes.Status404NotFound);
+        }
+
+        bool skuUnique = await repository.IsSkuUniqueAsync(request.Sku, excludeId: id, cancellationToken);
         if (!skuUnique)
         {
             var errors = new Dictionary<string, string[]>
@@ -44,13 +55,14 @@ public static class AddProductEndpoint
 
         var product = new Product
         {
+            Id = id,
             Name = request.Name,
             Sku = request.Sku,
             Price = request.Price,
             Stock = request.Stock,
             Category = request.Category,
         };
-        await repository.AddAsync(product, cancellationToken);
-        return Results.CreatedAtRoute(GetProductByIdEndpoint.EndpointName, new { id = product.Id }, product);
+        await repository.UpdateAsync(product, cancellationToken);
+        return Results.Ok(product);
     }
 }

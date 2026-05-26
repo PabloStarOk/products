@@ -42,7 +42,16 @@ public interface IProductRepository
     /// Checks if the provided SKU is unique among all products asynchronously.
     /// </summary>
     /// <param name="sku">The SKU to check for uniqueness.</param>
+    /// <param name="excludeId">The ID of a product to exclude from the uniqueness check (useful when updating a product).</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     /// <returns>True if the SKU is unique; otherwise, false.</returns>
-    Task<bool> IsSkuUniqueAsync(string sku, CancellationToken cancellationToken = default);
+    Task<bool> IsSkuUniqueAsync(string sku, int? excludeId = null, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Checks if a product with the specified unique identifier exists asynchronously.
+    /// </summary>
+    /// <param name="id">The unique identifier of the product to check for existence.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>True if the product exists; otherwise, false.</returns>
+    Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
 }

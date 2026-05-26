@@ -17,5 +17,6 @@ public static class ProductEndpointsGroup
         GetAllProductsEndpoint.Map(group);
         GetProductByIdEndpoint.Map(group);
         AddProductEndpoint.Map(group);
+        UpdateProductEndpoint.Map(group);
     }
 }
