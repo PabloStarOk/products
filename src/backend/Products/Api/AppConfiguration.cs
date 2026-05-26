@@ -8,6 +8,8 @@ namespace Products.Api;
 /// </summary>
 public static class AppConfiguration
 {
+    private const string ScalarDocsRoute = "/api/docs";
+
     /// <summary>
     /// Configures the application's middleware and endpoint mappings.
     /// </summary>
@@ -15,7 +17,7 @@ public static class AppConfiguration
     public static void ConfigureApp(this WebApplication app)
     {
         app.MapOpenApi();
-        app.MapScalarApiReference();
+        app.MapScalarApiReference(ScalarDocsRoute);
         app.UseHttpsRedirection();
         app.UseExceptionHandler("/error");
         app.UseStatusCodePages();
