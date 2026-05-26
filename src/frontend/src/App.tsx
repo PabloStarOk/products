@@ -29,21 +29,28 @@ function App() {
   });
 
   return (
-    <main>
-      <div className="flex justify-center items-center gap-4">
-        <SearchBar onSearch={setSearch} />
-        <Button onClick={() => setAddFormOpen(true)}>Añadir</Button>
-      </div>
-      <AddForm
-        open={addFormOpen}
-        onOpenChange={setAddFormOpen}
-        onSubmit={async (product) => {
-          await productService.create(product);
-          loadProducts();
-        }}
-      />
-      <ProductsList products={filteredProducts} />
-    </main>
+    <>
+      <header>
+        <h1 className="text-3xl font-bold text-center my-4">
+          Inventario de Productos
+        </h1>
+      </header>
+      <main className="flex flex-col gap-4 p-4 md:p-12">
+        <div className="flex justify-center items-center gap-4 bg-background p-4 border border-border rounded-md shadow-2xs">
+          <SearchBar onSearch={setSearch} />
+          <Button onClick={() => setAddFormOpen(true)}>Añadir</Button>
+        </div>
+        <AddForm
+          open={addFormOpen}
+          onOpenChange={setAddFormOpen}
+          onSubmit={async (product) => {
+            await productService.create(product);
+            loadProducts();
+          }}
+        />
+        <ProductsList products={filteredProducts} />
+      </main>
+    </>
   );
 }
 
