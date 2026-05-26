@@ -3,14 +3,21 @@ import "@/App.css";
 import ProductsList from "@/components/ProductsList";
 import type { Product } from "@/models/product";
 import { productService } from "@/services/product-service";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "@/components/SearchBar";
+import { Button } from "@/components/ui/button";
+import AddForm from "@/components/AddForm";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
+  const [addFormOpen, setAddFormOpen] = useState(false);
+
+  function loadProducts() {
+    productService.getAll().then(setProducts);
+  }
 
   useEffect(() => {
-    productService.getAll().then(setProducts);
+    loadProducts();
   }, []);
 
   const filteredProducts = products.filter((p) => {
@@ -23,7 +30,18 @@ function App() {
 
   return (
     <main>
-      <SearchBar onSearch={setSearch} />
+      <div className="flex justify-center items-center gap-4">
+        <SearchBar onSearch={setSearch} />
+        <Button onClick={() => setAddFormOpen(true)}>Añadir</Button>
+      </div>
+      <AddForm
+        open={addFormOpen}
+        onOpenChange={setAddFormOpen}
+        onSubmit={async (product) => {
+          await productService.create(product);
+          loadProducts();
+        }}
+      />
       <ProductsList products={filteredProducts} />
     </main>
   );
