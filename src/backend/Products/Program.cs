@@ -1,4 +1,4 @@
-using Products.Api;
+using Products.Api.Endpoints;
 using Products.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

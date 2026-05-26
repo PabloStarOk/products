@@ -1,6 +1,4 @@
-using Products.Api.Endpoints;
-
-namespace Products.Api;
+namespace Products.Api.Endpoints;
 
 /// <summary>
 /// Provides a group of endpoints related to product operations.
