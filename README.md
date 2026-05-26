@@ -89,7 +89,7 @@ cd src/frontend # Código del sistema front-end.
 3. Crear un archivo `.env` en la carpeta actual y establecer la variable `VITE_API_BASE_URL` indicando la URL donde se esta ejecutando el sistema back-end. Como alternativa, se puede establecer la misma variable de entorno pero a nivel del sistema en lugar del archivo.
 
 ```env
-VITE_API_BASE_URL="http://localhost:5187/api"
+VITE_API_BASE_URL="http://host:port/api"
 ```
 
 4. Instalar las dependencias del proyecto según su gestor de paquetes.
