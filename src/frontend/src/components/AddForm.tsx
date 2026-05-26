@@ -113,6 +113,7 @@ export default function AddForm({
                 value={price}
                 onChange={(e) => setPrice(Number(e.target.value))}
                 min={0}
+                step="0.01"
               />
             </Field>
             <Field>
