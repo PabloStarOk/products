@@ -21,9 +21,9 @@ public static class AddProductEndpoint
     }
 
     private static async Task<IResult> HandleAsync(
-        [FromBody] CreateProductRequest request,
+        [FromBody] ProductRequest request,
         IProductRepository repository,
-        IValidator<CreateProductRequest> validator,
+        IValidator<ProductRequest> validator,
         CancellationToken cancellationToken = default)
     {
         ValidationResult validation = await validator.ValidateAsync(request, cancellationToken);

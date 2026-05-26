@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddTransient<IValidator<CreateProductRequest>, CreateProductRequestValidator>();
+builder.Services.AddTransient<IValidator<ProductRequest>, ProductRequestValidator>();
 
 var app = builder.Build();
 
