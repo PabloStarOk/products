@@ -16,12 +16,12 @@ public static class AppConfiguration
     /// <param name="app">The <see cref="WebApplication"/> instance to configure.</param>
     public static void ConfigureApp(this WebApplication app)
     {
-        app.MapOpenApi();
-        app.MapScalarApiReference(ScalarDocsRoute);
-        app.UseHttpsRedirection();
         app.UseExceptionHandler("/error");
         app.UseStatusCodePages();
+        app.UseHttpsRedirection();
         app.UseCors();
+        app.MapOpenApi();
+        app.MapScalarApiReference(ScalarDocsRoute);
         ProductEndpointsGroup.Map(app);
     }
 }
