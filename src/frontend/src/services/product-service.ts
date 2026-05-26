@@ -39,7 +39,12 @@ async function httpRequest(input: RequestInfo | URL, init?: RequestInit) {
 }
 
 export const productService = {
-  getAll: () => fetch(PRODUCTS_URL).then((r) => r.json()),
+  getAll: async () => {
+    const response = await httpRequest(PRODUCTS_URL, {
+      method: "GET",
+    });
+    return response.json();
+  },
   getById: (id: number) => fetch(`${PRODUCTS_URL}/${id}`).then((r) => r.json()),
   create: async (request: ProductRequest) => {
     const response = await httpRequest(PRODUCTS_URL, {

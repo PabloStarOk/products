@@ -13,6 +13,7 @@ import {
   useReactTable,
   type ColumnDef,
 } from "@tanstack/react-table";
+import { Status } from "@/models/status";
 
 const columns: ColumnDef<Product>[] = [
   {
@@ -37,12 +38,30 @@ const columns: ColumnDef<Product>[] = [
   },
 ];
 
-export default function ProductsList({ products }: { products: Product[] }) {
+export default function ProductsList({
+  products,
+  status,
+}: {
+  products: Product[];
+  status: (typeof Status)[keyof typeof Status];
+}) {
   const table = useReactTable({
     data: products,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  let statusMsg: string | null;
+  switch (status) {
+    case Status.Loading:
+      statusMsg = "Cargando";
+      break;
+    case Status.Error:
+      statusMsg = "Error al cargar productos.";
+      break;
+    default:
+      statusMsg = null;
+  }
 
   return (
     <div className="overflow-hidden rounded-md border bg-background shadow-2xs">
@@ -84,8 +103,11 @@ export default function ProductsList({ products }: { products: Product[] }) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No se encontraron productos.
+              <TableCell
+                colSpan={columns.length}
+                className={`h-24 text-center ${statusMsg ? "text-destructive" : ""}`}
+              >
+                {statusMsg ?? "No se encontraron productos."}
               </TableCell>
             </TableRow>
           )}

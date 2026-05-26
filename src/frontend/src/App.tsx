@@ -6,18 +6,31 @@ import { productService } from "@/services/product-service";
 import SearchBar from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import AddForm from "@/components/AddForm";
+import { Status } from "@/models/status";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
   const [addFormOpen, setAddFormOpen] = useState(false);
+  const [status, setStatus] = useState(Status.Idle);
 
-  function loadProducts() {
-    productService.getAll().then(setProducts);
+  async function loadProducts() {
+    setStatus(Status.Loading);
+    try {
+      const products = await productService.getAll();
+      setProducts(products);
+      setStatus(Status.Idle);
+    } catch {
+      setProducts([]);
+      setStatus(Status.Error);
+    }
   }
 
   useEffect(() => {
-    loadProducts();
+    async function fetchData() {
+      await loadProducts();
+    }
+    fetchData();
   }, []);
 
   const filteredProducts = products.filter((p) => {
@@ -48,7 +61,7 @@ function App() {
             loadProducts();
           }}
         />
-        <ProductsList products={filteredProducts} />
+        <ProductsList products={filteredProducts} status={status} />
       </main>
     </>
   );
