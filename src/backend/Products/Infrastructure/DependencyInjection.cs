@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Products.Application;
 using Products.Infrastructure.Persistence;
 
 namespace Products.Infrastructure;
@@ -28,5 +29,6 @@ public static class DependencyInjection
         }
 
         services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
+        services.AddScoped<IProductRepository, ProductRepository>();
     }
 }
