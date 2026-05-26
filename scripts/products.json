@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "Jean Slim Fit",
+    "sku": "ABCD-JN-01",
+    "price": 119900.0,
+    "stock": 50,
+    "category": "Pantalones"
+  },
+  {
+    "id": "2",
+    "name": "Jean Regular",
+    "sku": "abcd-jn-01 ",
+    "price": 119900.0,
+    "stock": 30,
+    "category": "Pantalones"
+  },
+  {
+    "id": "3",
+    "name": "Camiseta Polo",
+    "sku": "ABCD_TSHIRT_M",
+    "price": 59900.0,
+    "stock": 100,
+    "category": "Camisetas"
+  },
+  {
+    "id": "4",
+    "name": "Camiseta Polo Slim",
+    "sku": "ABCD-TSHIRT-M",
+    "price": 59900.0,
+    "stock": 40,
+    "category": "Camisetas"
+  },
+  {
+    "id": "5",
+    "name": "Chaqueta Cuero",
+    "sku": "ABCD-CH-09",
+    "price": 249900.0,
+    "stock": 15,
+    "category": "Chaquetas"
+  }
+]
