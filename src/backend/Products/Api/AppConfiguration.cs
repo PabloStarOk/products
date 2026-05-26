@@ -1,4 +1,5 @@
 using Products.Api.Endpoints;
+using Scalar.AspNetCore;
 
 namespace Products.Api;
 
@@ -13,11 +14,8 @@ public static class AppConfiguration
     /// <param name="app">The <see cref="WebApplication"/> instance to configure.</param>
     public static void ConfigureApp(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
-            app.MapOpenApi();
-        }
-
+        app.MapOpenApi();
+        app.MapScalarApiReference();
         app.UseHttpsRedirection();
         app.UseExceptionHandler("/error");
         app.UseStatusCodePages();
