@@ -30,5 +30,9 @@ public static class DependencyInjection
 
         services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
         services.AddScoped<IProductRepository, ProductRepository>();
+        using ServiceProvider sp = services.BuildServiceProvider();
+        using IServiceScope scope = sp.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        context.Database.EnsureCreated();
     }
 }
