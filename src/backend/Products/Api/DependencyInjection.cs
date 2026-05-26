@@ -15,6 +15,7 @@ public static class DependencyInjection
     public static void AddApi(this IServiceCollection services)
     {
         services.AddOpenApi();
+        services.AddProblemDetails();
         services.AddTransient<IValidator<ProductRequest>, ProductRequestValidator>();
     }
 }
