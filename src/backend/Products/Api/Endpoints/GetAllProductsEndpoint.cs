@@ -18,7 +18,6 @@ public static class GetAllProductsEndpoint
             .WithSummary("Get All Products")
             .WithDescription("Gets all products stored in the database.")
             .Produces<IReadOnlyList<Product>>()
-            .ProducesProblem(StatusCodes.Status404NotFound)
             .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
@@ -27,8 +26,6 @@ public static class GetAllProductsEndpoint
         CancellationToken cancellationToken = default)
     {
         IReadOnlyList<Product> products = await repository.GetAllAsync(cancellationToken);
-        return products.Count is 0
-            ? Results.Problem(detail: "No products found", statusCode: StatusCodes.Status404NotFound)
-            : Results.Ok(products);
+        return Results.Ok(products);
     }
 }
