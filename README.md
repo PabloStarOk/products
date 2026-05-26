@@ -1,6 +1,6 @@
-# Catalogo de Productos
+# Catálogo de Productos
 
-Aplicación de catalogo de productos.
+Aplicación de catálogo de productos.
 
 ## Tecnologías
 
@@ -32,7 +32,7 @@ Aplicación de catalogo de productos.
 git clone git@github.com:PabloStarOk/products.git
 ```
 
-2. Acceder a la repositorio clonado y navegar hasta `src/backend/`
+2. Acceder al repositorio clonado y navegar hasta `src/backend/`
 
 ```bash
 cd products # Repositorio
@@ -79,14 +79,14 @@ cd Products/bin/Release/net10.0/
 git clone git@github.com:PabloStarOk/products.git
 ```
 
-2. Acceder a la repositorio clonado y navegar hasta `src/frontend/`.
+2. Acceder al repositorio clonado y navegar hasta `src/frontend/`.
 
 ```bash
 cd products # Repositorio
 cd src/frontend # Código del sistema front-end.
 ```
 
-3. Crear un archivo `.env` en la carpeta actual y establecer la variable `VITE_API_BASE_URL` indicando la URL donde se esta ejecutando el sistema back-end. Como alternativa, se puede establecer la misma variable de entorno pero a nivel del sistema en lugar del archivo.
+3. Crear un archivo `.env` en la carpeta actual y establecer la variable `VITE_API_BASE_URL` indicando la URL donde se está ejecutando el sistema back-end. Como alternativa, se puede establecer la misma variable de entorno pero a nivel del sistema en lugar del archivo.
 
 ```env
 VITE_API_BASE_URL="http://host:port/api"
@@ -139,7 +139,7 @@ pnpm run preview
 git clone git@github.com:PabloStarOk/products.git
 ```
 
-2. Acceder a la repositorio clonado y navegar hasta `scripts`.
+2. Acceder al repositorio clonado y navegar hasta `scripts`.
 
 ```bash
 cd products # Repositorio
@@ -155,6 +155,6 @@ python detect_duplicates.py products.json
 # CSV
 python detect_duplicates.py products.csv
 
-# Archivo personalizado (asegurar se incluir los campos id, name, sku,  price, stock y category)
+# Archivo personalizado (asegurar se incluya los campos id, name, sku,  price, stock y category)
 python detect_duplicates.py /path/to/custom-file
 ```
